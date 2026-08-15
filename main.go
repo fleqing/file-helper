@@ -14,6 +14,13 @@ func main() {
 	cmd := os.Args[1]
 	path := os.Args[2]
 
+	// 先验证子命令合法性
+	if cmd != "upload" && cmd != "download" {
+		fmt.Fprintln(os.Stderr, "usage: file-helper <upload|download> <path>")
+		os.Exit(1)
+	}
+
+	// 再初始化客户端
 	client, err := newClientFromEnv()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "error: %s\n", err)
