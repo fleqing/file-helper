@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"os"
+	"path/filepath"
 )
 
 func main() {
@@ -37,7 +38,7 @@ func main() {
 			fmt.Fprintf(os.Stderr, "error: %s\n", err)
 			os.Exit(1)
 		}
-		fmt.Printf("uploaded: %s\n", path)
+		fmt.Printf("uploaded: %s\n", filepath.Base(path))
 
 	case "download":
 		if err := client.Download(path); err != nil {
